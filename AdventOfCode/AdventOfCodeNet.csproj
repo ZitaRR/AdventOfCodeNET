@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<TargetName>aoc</TargetName>
+	<AssemblyName>aoc</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Input\" />
+    <Folder Include="Output\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.48.0" />
+  </ItemGroup>
+
+</Project>
