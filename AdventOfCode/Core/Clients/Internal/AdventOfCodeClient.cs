@@ -15,4 +15,9 @@ internal sealed class AdventOfCodeClient : IAdventOfCodeClient
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsStringAsync();
     }
+
+    public Task UploadAnswerAsync(int year, int day)
+    {
+        throw new NotImplementedException();
+    }
 }

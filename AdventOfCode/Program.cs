@@ -2,6 +2,8 @@
 using AdventOfCodeNet.Cli.Interceptors;
 using AdventOfCodeNet.Core.Clients;
 using AdventOfCodeNet.Core.Clients.Internal;
+using AdventOfCodeNet.Core.CodeDOM;
+using AdventOfCodeNet.Core.CodeDOM.Internal;
 using AdventOfCodeNet.Core.IO;
 using AdventOfCodeNet.Core.IO.Internal;
 using AdventOfCodeNet.Infrastructure;
@@ -13,7 +15,8 @@ IServiceCollection services = new ServiceCollection()
     .AddTransient((_) =>
         new HttpClient(new SessionCookieHandler()) { BaseAddress = new Uri("https://adventofcode.com") })
     .AddTransient<IAdventOfCodeClient, AdventOfCodeClient>()
-    .AddTransient<IFileManager, FileManager>();
+    .AddTransient<IFileManager, FileManager>()
+    .AddTransient<ICompiler, Compiler>();
 
 TypeRegistrar registrar = new (services);
 ITypeResolver resolver = registrar.Build();
@@ -44,6 +47,11 @@ app.Configure(config =>
         .AddCommand<InputDownloadCommand>("download")
         .WithAlias("dl")
         .WithDescription("Downloads the input for a specific day. Alias: dl");
+
+    config
+        .AddCommand<CompileCommand>("compile")
+        .WithAlias("c")
+        .WithDescription("Compiles the provided file (.cs only). Alias: c");
 
     config
         .SetExceptionHandler(ex =>
